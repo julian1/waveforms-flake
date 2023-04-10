@@ -1,3 +1,8 @@
+
+#  me@zephyrus:~/devel/waveforms-flake/pkgs/waveforms$ nix-build -E '((import <nixpkgs> {}).callPackage (import ./default.nix) { })' --keep-failed  -I  nixpkgs=/home/me/devel/nixpkgs/
+
+# ./result/bin/waveforms
+
 { lib
 , stdenv
 , runtimeShell
@@ -7,7 +12,9 @@
 , qt5
 , xdg-utils
 , shared-mime-info
-, adept2-runtime
+# JA
+# , adept2-runtime
+  , pkgs
 }:
 
 let
@@ -18,6 +25,8 @@ let
 
   rewriteUsr = "rewrite-usr" + stdenv.targetPlatform.extensions.sharedLibrary;
 
+  # JA
+  adept2-runtime = pkgs.callPackage (import ../adept2-runtime/default.nix) { };
 in
 
 stdenv.mkDerivation {
@@ -83,7 +92,8 @@ stdenv.mkDerivation {
     description = "Digilent Waveforms";
     homepage = "https://store.digilentinc.com/digilent-waveforms/";
     downloadPage = "https://mautic.digilentinc.com/waveforms-download";
-    license = licenses.unfree;
+    # JA
+    #license = licenses.unfree;
     maintainers = [ maintainers.liff ];
     platforms = builtins.attrNames systems;
   };

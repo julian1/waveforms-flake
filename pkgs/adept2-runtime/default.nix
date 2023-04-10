@@ -69,7 +69,8 @@ stdenv.mkDerivation rec {
     description = "Digilent Adept Runtime";
     homepage = "https://reference.digilentinc.com/reference/software/adept/start";
     downloadPage = "https://mautic.digilentinc.com/adept-runtime-download";
-    license = licenses.unfree;
+    # JA
+    #license = licenses.unfree;
     maintainers = [ maintainers.liff ];
     platforms = builtins.attrNames systems;
   };
